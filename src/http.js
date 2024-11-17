@@ -9,10 +9,20 @@ export const fetchAvailablePlaces = async () => {
   return resData.places;
 };
 
+export const fetchUserPlaces = async () => {
+  const response = await fetch(`${path}/user-places`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch user places");
+  }
+
+  const resData = await response.json();
+  return resData.places;
+};
+
 export const updateUserPlaces = async (places) => {
   const response = await fetch(`${path}/user-places`, {
     method: "PUT",
-      body: JSON.stringify({ places:places }),
+    body: JSON.stringify({ places: places }),
     headers: {
       "Content-Type": "application/json",
     },
